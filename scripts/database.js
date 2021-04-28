@@ -1,4 +1,18 @@
 const database = {
+    orderBuilder: {
+        set paintColor(paintColorFk) {
+            this.paintColorId = paintColorFk;
+        },
+        set interior(interiorFk) {
+            this.interiorId = interiorFk;
+        },
+        set technology(technologyFk) {
+            this.technologyId = technologyFk;
+        },
+        set wheel(wheelFk) {
+            this.wheelId = wheelFk;
+        }
+    },
     paintColors: [
         { id: 1, color: "Silver", price: 100.00 },
         { id: 2, color: "Midnight Blue", price: 250.00 },
@@ -35,6 +49,9 @@ const database = {
     ]
 }
 
+
+
+// Functions to grab a copy of property on database
 export const getPaintColors = () => {
     return [...database.paintColors]
 }
@@ -49,4 +66,23 @@ export const getTechnologies = () => {
 
 export const getWheels = () => {
     return [...database.wheels]
+}
+
+
+
+// Setter functions to set state
+export const setPaintColor = (id) => {
+    database.orderBuilder.paintColorId = id
+}
+
+export const setInterior = (id) => {
+    database.orderBuilder.interiorId = id
+}
+
+export const setTechnology = (id) => {
+    database.orderBuilder.technologyId = id
+}
+
+export const setWheel = (id) => {
+    database.orderBuilder.wheelId = id
 }
