@@ -1,4 +1,4 @@
-import { getPaintColors } from "./database.js"
+import { getPaintColors, setPaintColor } from "./database.js"
 
 const paintColors = getPaintColors()
 
@@ -6,7 +6,7 @@ document.addEventListener(
     "change",
     (event) => {
         if (event.target.name === "color") {
-            window.alert(`User chose paint option ${event.target.value}`)
+            setPaintColor(parseInt(event.target.value))
         }
     }
 )
