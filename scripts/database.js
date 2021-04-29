@@ -68,6 +68,29 @@ export const getWheels = () => {
     return [...database.wheels]
 }
 
+export const getCustomerOrders = () => {
+    return [...database.customerOrders]
+}
+
+export const addCustomOrder = () => {
+    // Copy the current state of user choice
+    const newOrder = {...database.orderBuilder}
+
+    // Add a new primary key to the object
+    newOrder.id = [...database.customerOrders].pop().id + 1
+
+    // Add a timestamp to the order
+    newOrder.timestamp = Date.now()
+
+    // Add the new order object to custom orders state
+    database.customerOrders.push(newOrder)
+
+    // Reset the temporary state for user choice
+    database.orderBuilder = {}
+
+    // Broadcast a notification that permanent state has changed
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
 
 
 // Setter functions to set state
