@@ -1,18 +1,5 @@
 const database = {
-    orderBuilder: {
-        set paintColor(paintColorFk) {
-            this.paintColorId = paintColorFk;
-        },
-        set interior(interiorFk) {
-            this.interiorId = interiorFk;
-        },
-        set technology(technologyFk) {
-            this.technologyId = technologyFk;
-        },
-        set wheel(wheelFk) {
-            this.wheelId = wheelFk;
-        }
-    },
+    orderBuilder: {},
     paintColors: [
         { id: 1, color: "Silver", price: 100.00 },
         { id: 2, color: "Midnight Blue", price: 250.00 },
@@ -72,6 +59,25 @@ export const getCustomerOrders = () => {
     return [...database.customerOrders]
 }
 
+
+// Setter functions to set state
+export const setPaintColor = (id) => {
+    database.orderBuilder.paintColorId = id
+}
+
+export const setInterior = (id) => {
+    database.orderBuilder.interiorId = id
+}
+
+export const setTechnology = (id) => {
+    database.orderBuilder.technologyId = id
+}
+
+export const setWheel = (id) => {
+    database.orderBuilder.wheelId = id
+}
+
+
 export const addCustomOrder = () => {
     // Copy the current state of user choice
     const newOrder = {...database.orderBuilder}
@@ -90,22 +96,4 @@ export const addCustomOrder = () => {
 
     // Broadcast a notification that permanent state has changed
     document.dispatchEvent(new CustomEvent("stateChanged"))
-}
-
-
-// Setter functions to set state
-export const setPaintColor = (id) => {
-    database.orderBuilder.paintColorId = id
-}
-
-export const setInterior = (id) => {
-    database.orderBuilder.interiorId = id
-}
-
-export const setTechnology = (id) => {
-    database.orderBuilder.technologyId = id
-}
-
-export const setWheel = (id) => {
-    database.orderBuilder.wheelId = id
 }
