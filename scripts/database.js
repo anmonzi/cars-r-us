@@ -1,5 +1,4 @@
 const database = {
-    orderBuilder: {},
     paintColors: [
         { id: 1, color: "Silver", price: 100.00 },
         { id: 2, color: "Midnight Blue", price: 250.00 },
@@ -13,16 +12,21 @@ const database = {
         { id: 4, seatType: "Black Leather", price: 200.00 }
     ],
     technologoies: [
-        { id: 1, techOption: "Basic Package", price: 59.99 },
-        { id: 2, techOption: "Navigation Package", price: 89.99 },
-        { id: 3, techOption: "Visibility Package", price: 95.99 },
-        { id: 4, techOption: "Ultra Package", price: 278.99 }
+        { id: 1, techOption: "Basic Tech Package", price: 59.99 },
+        { id: 2, techOption: "Navigation Tech Package", price: 89.99 },
+        { id: 3, techOption: "Visibility Tech Package", price: 95.99 },
+        { id: 4, techOption: "Ultra Tech Package", price: 278.99 }
     ],
     wheels: [
         { id: 1, wheelSize: "17-inch Pair Radial", price: 850.00 },
         { id: 2, wheelSize: "17-inch Pair Radial Black", price: 900.00 },
         { id: 3, wheelSize: "18-inch Pair Spoke Silver", price: 999.99},
         { id: 4, wheelSize: "18-inch Pair Spoke Black", price: 1125.99}
+    ],
+    types: [
+        { id: 1, type: "Car", price: 5 },
+        { id: 2, type: "Suv", price: 6.5 },
+        { id: 3, type: "Truck", price: 7.25 }
     ],
     customerOrders: [
         {
@@ -31,9 +35,11 @@ const database = {
             interiorId: 2,
             technologyId: 4,
             wheelId: 3,
+            typeId: 1,
             timestamp: 1614659931693
         }
-    ]
+    ],
+    orderBuilder: {}
 }
 
 
@@ -59,6 +65,10 @@ export const getCustomerOrders = () => {
     return [...database.customerOrders]
 }
 
+export const getTypes = () => {
+    return [...database.types]
+}
+
 
 // Setter functions to set state
 export const setPaintColor = (id) => {
@@ -75,6 +85,10 @@ export const setTechnology = (id) => {
 
 export const setWheel = (id) => {
     database.orderBuilder.wheelId = id
+}
+
+export const setType = (id) => {
+    database.orderBuilder.typeId = id
 }
 
 

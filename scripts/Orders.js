@@ -1,9 +1,10 @@
-import { getCustomerOrders, getInteriors, getPaintColors, getTechnologies, getWheels } from "./database.js";
+import { getCustomerOrders, getInteriors, getPaintColors, getTechnologies, getTypes, getWheels } from "./database.js";
 
 const paints = getPaintColors()
 const wheels = getWheels()
 const interiors = getInteriors()
 const techs = getTechnologies()
+const types = getTypes()
 
 
 // Function to build custom order and render order # and cost
@@ -24,8 +25,13 @@ const buildOrderList = (order) => {
     const foundTech = techs.find((tech) => {
         return tech.id === order.technologyId
     })
+
+    const foundType = types.find((type) => {
+        return type.id === order.typeId
+    })
+
     //Takes price key/value from each object and adds to get total
-    const totalCost = foundPaint.price + foundWheel.price + foundInterior.price + foundTech.price
+    const totalCost = (foundPaint.price + foundWheel.price + foundInterior.price + foundTech.price) * foundType.price
 
     const costString = totalCost.toLocaleString("en-US", {
         style: "currency",
@@ -33,7 +39,7 @@ const buildOrderList = (order) => {
     })
     
     return /*html*/ `<li>
-        Order #${order.id} costs ${costString}
+        Order #${order.id} is a ${foundPaint.color} ${foundType.type} with ${foundInterior.seatType}, ${foundWheel.wheelSize} wheels, and the ${foundTech.techOption}. The total cost is ${costString}.
     </li>`
 }
 
